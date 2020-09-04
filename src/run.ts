@@ -115,7 +115,7 @@ const printOutput = (res: ExecRes): void => {
 const getAllModules = ():string[] => {
     return fs.readdirSync('.', {withFileTypes: true})
         .filter(item => !item.isDirectory())
-        .filter(fs.existsSync(item.name + "/go.mod"))
+        .filter(item => fs.existsSync(item.name + "/go.mod"))
         .map(item => item.name)
 };
 async function runLint(lintPath: string, patchPath: string): Promise<void> {
