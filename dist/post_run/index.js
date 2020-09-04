@@ -6764,7 +6764,8 @@ function runLint(lintPath, patchPath) {
             return;
         }
 
-        for (var workingDirectory in directories) {
+        for (var workingDirectoryTmp in directories) {
+            var workingDirectory = directories[workingDirectoryTmp];
             const cmdArgs = {};
             if (patchPath) {
                 // TODO: make them compatible
