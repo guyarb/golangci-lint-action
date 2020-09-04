@@ -193,9 +193,8 @@ async function runLint(lintPath: string, patchPath: string): Promise<void> {
         core.setFailed(`golangci-lint exit with code ${exc.code}`)
       }
     }
+    core.info(`Ran golangci-lint in ${Date.now() - startedAt}ms`)
   }
-
-  core.info(`Ran golangci-lint in ${Date.now() - startedAt}ms`)
 }
 
 export async function run(): Promise<void> {

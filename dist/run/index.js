@@ -6806,8 +6806,8 @@ function runLint(lintPath, patchPath) {
                     core.setFailed(`golangci-lint exit with code ${exc.code}`);
                 }
             }
+            core.info(`Ran golangci-lint in ${Date.now() - startedAt}ms`);
         }
-        core.info(`Ran golangci-lint in ${Date.now() - startedAt}ms`);
     });
 }
 function run() {
