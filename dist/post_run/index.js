@@ -6758,7 +6758,7 @@ function runLint(lintPath, patchPath) {
             addedArgs.push(`--new=false`);
             addedArgs.push(`--new-from-rev=`);
         }
-        directories = getAllModules()
+        var directories = getAllModules()
         if (directories.length == 0) {
             core.setFailed(`no directories`);
             return;
