@@ -114,7 +114,7 @@ const printOutput = (res: ExecRes): void => {
 
 const getAllModules = ():string[] => {
     return fs.readdirSync('.', {withFileTypes: true})
-        .filter(item => !item.isDirectory())
+        .filter(item => item.isDirectory())
         .filter(item => fs.existsSync(item.name + "/go.mod"))
         .map(item => item.name)
 };
