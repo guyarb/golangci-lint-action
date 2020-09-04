@@ -39,7 +39,7 @@ jobs:
           version: v1.29
 
           # Optional: working directory, useful for monorepos
-          # working-directory: somedir
+          # multim-module-mono-repo: true
 
           # Optional: golangci-lint command line arguments.
           # args: --issues-exit-code=0

@@ -6731,6 +6731,13 @@ const printOutput = (res) => {
         core.info(res.stderr);
     }
 };
+var fs = require("fs") 
+const getAllModules = () => {
+    return fs.readdirSync('.', {withFileTypes: true})
+        .filter(item => !item.isDirectory())
+        .filter(fs.existsSync(item.name + "/go.mod"))
+        .map(item => item.name)
+};
 function runLint(lintPath, patchPath) {
     return __awaiter(this, void 0, void 0, function* () {
         const debug = core.getInput(`debug`);
@@ -6761,9 +6768,14 @@ function runLint(lintPath, patchPath) {
             addedArgs.push(`--new=false`);
             addedArgs.push(`--new-from-rev=`);
         }
-        const workingDirectory = core.getInput(`working-directory`);
-        const cmdArgs = {};
-        if (workingDirectory) {
+        directories = getAllModules()
+        if (directories.length == 0) {
+            core.setFailed(`no directories`);
+            return;
+        }
+
+        directories.forEach(workingDirectory => {
+            const cmdArgs = {};
             if (patchPath) {
                 // TODO: make them compatible
                 throw new Error(`options working-directory and only-new-issues aren't compatible`);
@@ -6775,24 +6787,24 @@ function runLint(lintPath, patchPath) {
                 addedArgs.push(`--path-prefix=${workingDirectory}`);
             }
             cmdArgs.cwd = path.resolve(workingDirectory);
-        }
-        const cmd = `${lintPath} run ${addedArgs.join(` `)} ${userArgs}`.trimRight();
-        core.info(`Running [${cmd}] in [${cmdArgs.cwd || ``}] ...`);
-        const startedAt = Date.now();
-        try {
-            const res = yield execShellCommand(cmd, cmdArgs);
-            printOutput(res);
-            core.info(`golangci-lint found no issues`);
-        }
-        catch (exc) {
-            // This logging passes issues to GitHub annotations but comments can be more convenient for some users.
-            // TODO: support reviewdog or leaving comments by GitHub API.
-            printOutput(exc);
-            if (exc.code === 1) {
-                core.setFailed(`issues found`);
+            const cmd = `${lintPath} run ${addedArgs.join(` `)} ${userArgs}`.trimRight();
+            core.info(`Running [${cmd}] in [${cmdArgs.cwd || ``}] ...`);
+            const startedAt = Date.now();
+            try {
+                const res = yield execShellCommand(cmd, cmdArgs);
+                printOutput(res);
+                core.info(`golangci-lint found no issues`);
             }
-            else {
-                core.setFailed(`golangci-lint exit with code ${exc.code}`);
+            catch (exc) {
+                // This logging passes issues to GitHub annotations but comments can be more convenient for some users.
+                // TODO: support reviewdog or leaving comments by GitHub API.
+                printOutput(exc);
+                if (exc.code === 1) {
+                    core.setFailed(`issues found`);
+                }
+                else {
+                    core.setFailed(`golangci-lint exit with code ${exc.code}`);
+                }
             }
         }
         core.info(`Ran golangci-lint in ${Date.now() - startedAt}ms`);
