@@ -6773,12 +6773,14 @@ function runLint(lintPath, patchPath) {
             return;
         }
 
-        for (var workingDirectory in directories) {
+        for (var workingDirectoryTmp in directories) {
+            var workingDirectory = path.resolve(workingDirectoryTmp)
             const cmdArgs = {};
             if (patchPath) {
                 // TODO: make them compatible
                 throw new Error(`options working-directory and only-new-issues aren't compatible`);
             }
+            printOutput(workingDirectory);
             if (!fs.existsSync(workingDirectory) || !fs.lstatSync(workingDirectory).isDirectory()) {
                 throw new Error(`working-directory (${workingDirectory}) was not a path`);
             }
