@@ -6731,7 +6731,6 @@ const printOutput = (res) => {
         core.info(res.stderr);
     }
 };
-var fs = require("fs") 
 const getAllModules = () => {
     return fs.readdirSync('.', {withFileTypes: true})
         .filter(item => !item.isDirectory())
