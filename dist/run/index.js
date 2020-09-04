@@ -6732,7 +6732,7 @@ const printOutput = (res) => {
     }
 };
 const getAllModules = () => {
-    return fs.readdirSync('.', {withFileTypes: true})
+    return fs.readdirSync(path.resolve('.'), {withFileTypes: true})
         .filter(item => item.isDirectory())
         .filter(item => fs.existsSync(item.name + "/go.mod"))
         .map(item => item.name)
