@@ -3809,7 +3809,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Copyright (c) Microsoft and contributors. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for
  * license information.
- * 
+ *
  * Azure Core LRO SDK for JavaScript - 1.0.2
  */
 
@@ -6765,6 +6765,7 @@ function runLint(lintPath, patchPath) {
         }
 
         for (var workingDirectoryTmp in directories) {
+            var copyAddedArgs = [...addedArgs]
             var workingDirectory = directories[workingDirectoryTmp];
             const cmdArgs = {};
             if (patchPath) {
@@ -23133,7 +23134,7 @@ var Credential = /** @class */ (function () {
      */
     Credential.prototype.create = function (
     // tslint:disable-next-line:variable-name
-    _nextPolicy, 
+    _nextPolicy,
     // tslint:disable-next-line:variable-name
     _options) {
         throw new Error("Method should be implemented in children classes.");
@@ -24301,7 +24302,7 @@ var BlobClient = /** @class */ (function (_super) {
                                                 cpkInfo: options.customerProvidedKey
                                             };
                                             return [4 /*yield*/, this.blobContext.download(tslib.__assign({ abortSignal: options.abortSignal }, updatedOptions))];
-                                        case 1: 
+                                        case 1:
                                         // Debug purpose only
                                         // console.log(
                                         //   `Read from internal stream, range: ${
@@ -26149,7 +26150,7 @@ var BlockBlobClient = /** @class */ (function (_super) {
                                         return [2 /*return*/];
                                 }
                             });
-                        }); }, 
+                        }); },
                         // concurrency should set a smaller value than maxConcurrency, which is helpful to
                         // reduce the possibility when a outgoing handler waits for stream data, in
                         // this situation, outgoing handlers are blocked.
@@ -27266,7 +27267,7 @@ var ContainerClient = /** @class */ (function (_super) {
                     case 1:
                         _b.trys.push([1, 3, 4, 5]);
                         return [4 /*yield*/, this.containerContext.create(tslib.__assign(tslib.__assign({}, options), { spanOptions: spanOptions }))];
-                    case 2: 
+                    case 2:
                     // Spread operator in destructuring assignments,
                     // this will filter out unwanted properties from the response object into result object
                     return [2 /*return*/, _b.sent()];
@@ -59422,7 +59423,7 @@ var ServiceClient = /** @class */ (function () {
      * @param credentials The credentials used for authentication with the service.
      * @param options The service client options that govern the behavior of the client.
      */
-    function ServiceClient(credentials, 
+    function ServiceClient(credentials,
     /* eslint-disable-next-line @azure/azure-sdk/ts-naming-options */
     options) {
         var _this = this;

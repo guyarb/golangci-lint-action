@@ -160,6 +160,7 @@ async function runLint(lintPath: string, patchPath: string): Promise<void> {
   }
 
   for(var workingDirectory in directories) {
+    var copyAddedArgs = [...addedArgs];
     const cmdArgs: ExecOptions = {}
     if (workingDirectory) {
       if (patchPath) {
@@ -170,12 +171,12 @@ async function runLint(lintPath: string, patchPath: string): Promise<void> {
         throw new Error(`working-directory (${workingDirectory}) was not a path`)
       }
       if (!userArgNames.has(`path-prefix`)) {
-        addedArgs.push(`--path-prefix=${workingDirectory}`)
+        copyAddedArgs.push(`--path-prefix=${workingDirectory}`)
       }
       cmdArgs.cwd = path.resolve(workingDirectory)
     }
 
-    const cmd = `${lintPath} run ${addedArgs.join(` `)} ${userArgs}`.trimRight()
+    const cmd = `${lintPath} run ${copyAddedArgs.join(` `)} ${userArgs}`.trimRight()
     core.info(`Running [${cmd}] in [${cmdArgs.cwd || ``}] ...`)
     const startedAt = Date.now()
     try {
