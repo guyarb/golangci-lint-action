@@ -45193,7 +45193,7 @@ function buildCacheKeys() {
         keys.push(cacheKey);
         // Periodically invalidate a cache because a new code being added.
         // TODO: configure it via inputs.
-        cacheKey += `${getIntervalKey(7)}-`;
+        cacheKey += `${getIntervalKey(1)}-`;
         keys.push(cacheKey);
         if (yield pathExists(`go.mod`)) {
             // Add checksum to key to invalidate a cache when dependencies change.
