@@ -43923,7 +43923,9 @@ exports.installLint = installLint;
 function installGo() {
     return __awaiter(this, void 0, void 0, function* () {
         const startedAt = Date.now();
-        process.env[`INPUT_GO-VERSION`] = `1`;
+        if (process.env[`INPUT_GO-VERSION`] === undefined) {
+          process.env[`INPUT_GO-VERSION`] = `1`
+        }
         yield main_1.run();
         core.info(`Installed Go in ${Date.now() - startedAt}ms`);
     });
