@@ -5,10 +5,10 @@ updates:
     schedule:
       interval: weekly
     reviewers:
-      - "golangci/team"
+      - "guyarb"
   - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: weekly
     reviewers:
-      - "golangci/team"
+      - "guyarb"
