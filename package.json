@@ -16,7 +16,8 @@
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "all": "npm run prepare-deps && npm run build && npm run format-check && npm run lint",
-    "local": "npm run build && act -j test -b"
+    "local": "npm run build && act -j test -b",
+    "local-full-version": "npm run build && act -j test-full-version -b"
   },
   "repository": {
     "type": "git",
@@ -45,7 +46,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-simple-import-sort": "^6.0.0",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
     "prettier": "^2.1.2",
     "typescript": "^4.0.5"
   }

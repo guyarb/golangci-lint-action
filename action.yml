@@ -4,7 +4,7 @@ description: "Patch for golangci-lint action with line-attached annotations for 
 author: "Guy Arbitman"
 inputs:
   version:
-    description: "version of golangci-lint to use in form of v1.2 or `latest` to use the latest version"
+    description: "version of golangci-lint to use in form of v1.2 or v1.2.3 or `latest` to use the latest version"
     required: false
   args:
     description: "golangci-lint command line arguments"
