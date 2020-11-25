@@ -6231,7 +6231,8 @@ function runLint(lintPath, patchPath) {
             return;
         }
         console.log(directories);
-        for (var workingDirectory in directories) {
+        for (var index in directories) {
+            const workingDirectory = directories[index];
             console.log(directories);
             var copyAddedArgs = [...addedArgs];
             const cmdArgs = {};

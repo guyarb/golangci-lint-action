@@ -159,7 +159,8 @@ async function runLint(lintPath: string, patchPath: string): Promise<void> {
   }
   console.log(directories)
 
-  for(var workingDirectory in directories) {
+  for(var index in directories) {
+    const workingDirectory = directories[index]
     console.log(directories)
     var copyAddedArgs = [...addedArgs];
     const cmdArgs: ExecOptions = {}
