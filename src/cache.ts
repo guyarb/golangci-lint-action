@@ -37,7 +37,7 @@ const getIntervalKey = (invalidationIntervalDays: number): string => {
 
 async function buildCacheKeys(): Promise<string[]> {
   const keys = []
-  let cacheKey = `golangci-lint.cache2-`
+  let cacheKey = core.getInput(`cache-key`, { required: true }).trim()
   keys.push(cacheKey)
 
   // Periodically invalidate a cache because a new code being added.

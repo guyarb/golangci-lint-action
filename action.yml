@@ -10,9 +10,9 @@ inputs:
     description: "golangci-lint command line arguments"
     default: ""
     required: false
-  multim-module-mono-repo:
-    description: "Looks for every module in the repo, and runs golangci linter for them."
-    default: true
+  cache-key:
+    description: "Base name of the cache to use"
+    default: "golangci-lint-cache"
     required: false
   github-token:
     description: "the token is used for fetching patch of a pull request to show only new issues"

@@ -40,7 +40,7 @@ jobs:
           version: v1.29
 
           # Optional: working directory, useful for monorepos
-          # multim-module-mono-repo: true
+          # golangci-lint-cache: "my-repo"
 
           # Optional: golangci-lint command line arguments.
           # args: --issues-exit-code=0
@@ -94,7 +94,7 @@ jobs:
 You will also likely need to add the following `.gitattributes` file to ensure that line endings for windows builds are properly formatted:
 
 ```.gitattributes
-*.go text eol=lf 
+*.go text eol=lf
 ```
 
 ## Comments and Annotations
