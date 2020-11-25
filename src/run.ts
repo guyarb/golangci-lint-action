@@ -157,8 +157,10 @@ async function runLint(lintPath: string, patchPath: string): Promise<void> {
     core.setFailed(`no directories`);
     return;
   }
+  console.log(directories)
 
   for(var workingDirectory in directories) {
+    console.log(directories)
     var copyAddedArgs = [...addedArgs];
     const cmdArgs: ExecOptions = {}
     if (workingDirectory) {

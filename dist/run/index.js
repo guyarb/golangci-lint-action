@@ -6240,7 +6240,9 @@ function runLint(lintPath, patchPath) {
             core.setFailed(`no directories`);
             return;
         }
+        console.log(directories);
         for (var workingDirectory in directories) {
+            console.log(directories);
             var copyAddedArgs = [...addedArgs];
             const cmdArgs = {};
             if (workingDirectory) {
