@@ -49540,7 +49540,7 @@ function restoreCache() {
             }
             // Store the matched cache key
             utils.setCacheState(cacheKey);
-            core.info(`Restored cache for golangci-lint from key '${primaryKey}' in ${Date.now() - startedAt}ms`);
+            core.info(`Restored cache '${cacheKey}' for golangci-lint from key '${primaryKey}' in ${Date.now() - startedAt}ms`);
         }
         catch (error) {
             if (error.name === cache.ValidationError.name) {
