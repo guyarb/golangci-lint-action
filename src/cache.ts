@@ -42,7 +42,7 @@ async function buildCacheKeys(): Promise<string[]> {
 
   // Periodically invalidate a cache because a new code being added.
   // TODO: configure it via inputs.
-  cacheKey += `${getIntervalKey(1)}-`
+  cacheKey += `${getIntervalKey(3)}-`
   keys.push(cacheKey)
 
   if (await pathExists(`go.mod`)) {
@@ -123,7 +123,7 @@ export async function saveCache(): Promise<void> {
 
   try {
     await cache.saveCache(cacheDirs, primaryKey)
-    core.info(`Saved cache for golangci-lint from paths '${cacheDirs.join(`, `)}' in ${Date.now() - startedAt}ms`)
+    core.info(`Saved cache for ${primaryKey} from paths '${cacheDirs.join(`, `)}' in ${Date.now() - startedAt}ms`)
   } catch (error) {
     if (error.name === cache.ValidationError.name) {
       throw error
